@@ -46,7 +46,9 @@ export const Header = ({ text }) => {
                 )}
             </div>
             <OverlayTrigger trigger="click" placement="bottom" overlay={popover} rootClose>
-                <img src={Avatar} alt="anh" className={styles.avatar} />
+                {/* <img src={Avatar} alt="anh" className={styles.avatar} /> */}
+                <img className={styles.avatar} src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Picture.png" alt="Avatar" />
+
             </OverlayTrigger>
         </div>
     );
