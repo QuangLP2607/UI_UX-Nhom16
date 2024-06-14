@@ -10,7 +10,7 @@ import { Icon } from '@iconify/react';
 export const Header = ({ text }) => {
     const navigate = useNavigate();
     const bellRef = useRef(null);
-    const [alerts] = useState([1]);
+    const [alerts] = useState([3]);
 
     const handleLogout = () => {
         console.log('Logout success');

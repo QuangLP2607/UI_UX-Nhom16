@@ -10,7 +10,7 @@ import PieChart from '../../components/pieChart/pieChart';
 export const Report = () => {
     const [dateRange, setDateRange] = useState('7');
     const handelSetDateRange = (eventKey) => setDateRange(eventKey);
-    const [tags, setTags] = useState(['Lập trình', 'Tiếng Nhật', 'Kỹ năng Mềm', 'Thể dục', 'Tiếng Anh']);
+    const [tags, setTags] = useState(['Kỹ năng Mềm', 'Lập trình', 'Tiếng Nhật', 'Thể dục', 'Tiếng Anh']);
     
     return (
         <div>
@@ -24,7 +24,7 @@ export const Report = () => {
                     </div>
                     ))}
                 </div>
-                <hr></hr>
+                <hr/>
                 <div className={styles.flexRow}>
                     <div style={{fontWeight: '510'}}>Công việc {dateRange} ngày gần đây</div>
                     <div>
@@ -41,6 +41,7 @@ export const Report = () => {
                     </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <PieChart />
+                    
                     <RadarChart />
                 </div>
             </div>

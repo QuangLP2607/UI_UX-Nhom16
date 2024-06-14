@@ -3,52 +3,25 @@ import globalStyles from '../../globalStyles.module.css'
 import styles from './notify.module.css'
 import Header from '../../components/layout/header/header1';
 import Schedule from '../../components/schedule/schedule';
+import scheduleData from '../../dataTest/calenData';
 
 export const Notify = () => {
     const [activeTab, setActiveTab] = useState('upcoming');
-
-    const scheduleData = [
-        {
-            startTime: '06:45',
-            endTime: '08:15',
-            title: 'Pháp luật đại cương - EM1170',
-            note: 'Sáng thứ 3, tiết 1 - 3, D9-406'
-        },
-        {
-            startTime: '08:25',
-            endTime: '11:45',
-            title: 'Kỹ thuật phần mềm',
-            note: 'Sáng thứ 3, tiết 3 - 4, D9-406',
-        },
-        {
-            startTime: '14:25',
-            endTime: '11:45',
-            title: '147743 - Pháp luật đại cương - EM1170',
-            note: 'Sáng thứ 3, tiết 3 - 5, D9-406',
-        },
-        {
-            startTime: '14:25',
-            endTime: '11:45',
-            title: '147743 - Pháp luật đại pháp - EM1177',
-            note: 'Sáng thứ 3, tiết 5 - 7, D9-406',
-          },
-    ];
-
     const renderContent = () => {
         switch (activeTab) {
             case 'upcoming':
-            return <div>  
-                    <div style={{ fontWeight: 'bold' }}>Còn 4 tiếng nữa</div>
-                    <Schedule scheduleItem={[scheduleData[0]]} />
-                    <div style={{ fontWeight: 'bold' }}>Còn 7 tiếng nữa</div>
-                    <Schedule scheduleItem={[scheduleData[1]]} />
+            return <div >  
+                    <p style={{ fontWeight: 'bold' }}>Còn 4 tiếng nữa</p>
+                    <Schedule scheduleItem={[scheduleData[2]]} />
                 </div>
             case 'passed':
             return <div>  
-                    <div style={{ fontWeight: 'bold' }}>Quá hạn 3 tiếng</div>
+                    <p style={{ fontWeight: 'bold' }}>Quá hạn 3 tiếng</p>
                     <Schedule scheduleItem={[scheduleData[0]]} />
-                    <div style={{ fontWeight: 'bold' }}>Quán hạn 4 tiếng</div>
-                    <Schedule scheduleItem={[scheduleData[0]]} />
+                    <p style={{ fontWeight: 'bold', marginTop: '20px' }}>Quá hạn 7 tiếng</p>
+                    <Schedule scheduleItem={[scheduleData[1]]} />
+                    {/* <div style={{ fontWeight: 'bold', marginTop: '20px' }}>Quán hạn 4 tiếng</div>
+                    <Schedule scheduleItem={[scheduleData[0]]} /> */}
                 </div>
         }
     }

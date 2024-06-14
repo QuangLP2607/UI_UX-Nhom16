@@ -1,5 +1,4 @@
-import { Container, Row, Col, Button, Form, Alert, Modal, Dropdown } from 'react-bootstrap';
-import React, { useState, useEffect} from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './start.css';
 import CustomButton from '../../components/CustomButton';
