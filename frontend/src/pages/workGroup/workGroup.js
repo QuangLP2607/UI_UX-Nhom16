@@ -9,10 +9,9 @@ import { Icon } from '@iconify/react';
 
 export const WorkGroup = () => {
   const [works, setWorks] = useState([
-    { title: 'Học từ vựng mới', note: 'Học 10 từ vựng mới mỗi ngày.', percent: 30 },
-    { title: 'Luyện nghe', note: 'Nghe 30 phút podcast tiếng Việt mỗi ngày.', percent: 50 },
-    { title: 'Luyện nói', note: 'Nói chuyện với người bản xứ 15 phút mỗi ngày.', percent: 20 },
-    // { title: 'Luyện viết', note: 'Viết một đoạn văn ngắn mỗi ngày.', percent: 40 }
+    { title: 'Học tiếng Nhật', note: 'Mục tiêu 6 tháng N3', percent: 30 },
+    { title: 'Học lập trình', note: '3 tháng 1 ngôn ngữ', percent: 50 },
+    { title: 'Kỹ năng mềm', note: 'Học phỏng vấn thực tập', percent: 20 }
   ]);
 
   const [showModal, setShowModal] = useState(false);

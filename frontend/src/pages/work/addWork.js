@@ -100,10 +100,22 @@ export const AddWork = () => {
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="w-100">
                     <Dropdown.Item 
-                        eventKey="Tuần này" 
-                        className={selectedWorkGroup === "Tuần này" ? styles.selectedItem : ''}
+                        eventKey="Tiếng Nhật" 
+                        className={selectedWorkGroup === "Tiếng Nhật" ? styles.selectedItem : ''}
                     >
-                        Tuần này
+                        Tiếng Nhật
+                    </Dropdown.Item>
+                    <Dropdown.Item 
+                        eventKey="Lập trình" 
+                        className={selectedWorkGroup === "Lập trình" ? styles.selectedItem : ''}
+                    >
+                        Lập trình
+                    </Dropdown.Item>
+                    <Dropdown.Item 
+                        eventKey="Kỹ năng mềm" 
+                        className={selectedWorkGroup === "Kỹ năng mềm" ? styles.selectedItem : ''}
+                    >
+                        Kỹ năng mềm
                     </Dropdown.Item>
                     {/* Bạn có thể thêm nhiều Dropdown.Item ở đây */}
                 </Dropdown.Menu>
