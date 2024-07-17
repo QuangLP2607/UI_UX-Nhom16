@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Form, Alert, Dropdown } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Form, Dropdown } from 'react-bootstrap';
 import globalStyles from '../../globalStyles.module.css';
 import styles from './work.module.css';
 import Header from '../../components/layout/header/header';
@@ -7,9 +7,13 @@ import Footer from '../../components/layout/footer/footer';
 import ClockModal from '../../components/clockModal/clockModal';
 import CalendarModal from '../../components/calendar/calendarModal';
 import { Icon } from '@iconify/react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 export const AddWork = () => {
-  const [alert, setAlert] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
   const [selectedWorkGroup, setSelectedWorkGroup] = useState('Chọn nhóm công việc');
   const handleSelectedWorkGroup = (eventKey) => setSelectedWorkGroup(eventKey);
   const [workData, setWorkData] = useState({
@@ -21,8 +25,6 @@ export const AddWork = () => {
     endDate: '',
     tasks: []
   });
-
-
 
   const handleDeleteTask = (index) => {
     setWorkData(prevData => {
@@ -48,12 +50,31 @@ export const AddWork = () => {
   };
 
   const saveChange = () => {
+    if (!validateForm()) {
+      toast.error('Vui lòng nhập đầy đủ thông tin.', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
+      return;
+    }
+
     console.log("Save:", workData);
     localStorage.setItem('workData', JSON.stringify(workData));
-    setAlert(true);
-    setTimeout(() => {
-      setAlert(false);
-    }, 2000);
+    toast.success('Thêm công việc thành công!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
+    });
+  };
+
+  const validateForm = () => {
+    return (
+      workData.title.trim() !== '' &&
+      workData.startTime.trim() !== '' &&
+      workData.startDate.trim() !== '' &&
+      workData.endTime.trim() !== '' &&
+      workData.endDate.trim() !== '' &&
+      workData.tasks.every(task => task.name.trim() !== '')
+    );
   };
 
   const handleTimeSelect = (field, time) => {
@@ -81,6 +102,7 @@ export const AddWork = () => {
       tasks: []
     });
     console.log('Canceled');
+    navigate(-1); // Go back to the previous page
   };
 
   return (
@@ -178,13 +200,11 @@ export const AddWork = () => {
             <Button className={styles.button} onClick={cancel} variant="danger">Hủy bỏ</Button>
           </div>
         </div>
-        {alert && (
-            <Alert variant="success" dismissible className={globalStyles.Notification}>
-                Thêm công việc thành công!
-            </Alert>
-        )}
+        <ToastContainer />
       </div>
       <Footer/>
     </div>
   );
 };
+
+export default AddWork;

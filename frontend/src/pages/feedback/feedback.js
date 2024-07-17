@@ -1,23 +1,21 @@
-import { Button, Alert } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import React, { useState } from 'react';
-import globalStyles from '../../globalStyles.module.css'
-import styles from './feedback.module.css'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import globalStyles from '../../globalStyles.module.css';
+import styles from './feedback.module.css';
 import Header from '../../components/layout/header/header1';
 
 export const Feedback = () => {
     const [feedBack, setFeedBack] = useState('');
-    const [alertType, setAlertType] = useState(null);
 
     const handleSubmit = () => {
         if (feedBack.trim() === '') {
-            setAlertType("danger");
+            toast.error("Hãy nhập nội dung phản hồi !");
             return;
         }
-        setAlertType("success");
+        toast.success("Phản hồi đã được gửi thành công !");
         setFeedBack('');
-        setTimeout(() => {
-            setAlertType(null);
-        }, 2000);
     };
 
     return (
@@ -33,11 +31,7 @@ export const Feedback = () => {
                     onChange={(event) => setFeedBack(event.target.value)}
                 />
                 <Button className={styles.button} onClick={handleSubmit}>Gửi phản hồi</Button>
-                {alertType && (
-                    <Alert variant={alertType} onClose={() => setAlertType(null)} dismissible className={globalStyles.Notification}>
-                        {alertType === "danger" ? "Hãy nhập nội dung phản hồi !" : "Phản hồi đã được gửi thành công !"}
-                    </Alert>
-                )}
+                <ToastContainer />
             </div>
         </div>
     );

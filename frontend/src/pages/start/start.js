@@ -10,14 +10,13 @@ export const Start = () => {
     };
 
     return (
-        <div className="container">
-            <div className="animated-background"></div>
+        <div className="background">
             <div className="content">
-            <img
-                        src="https://img.freepik.com/free-vector/kpi-abstract-concept-illustration-key-performance-indicator-success-measurement-company-growth-business-effectiveness-analytics-tool-financial-management-kpi_335657-506.jpg?t=st=1718330932~exp=1718334532~hmac=f751d82108ea71dbb1d473730b34c9db81b7b1711fca4275da1d62d8905fa333&w=740"
-                        className="logo"
-                        alt="KPI Tracker Logo"
-                    />
+                <img
+                    src="https://img.freepik.com/free-vector/kpi-abstract-concept-illustration-key-performance-indicator-success-measurement-company-growth-business-effectiveness-analytics-tool-financial-management-kpi_335657-506.jpg?t=st=1718330932~exp=1718334532~hmac=f751d82108ea71dbb1d473730b34c9db81b7b1711fca4275da1d62d8905fa333&w=740"
+                    className="logo"
+                    alt="KPI Tracker Logo"
+                />
                 <div className="contentHeader">
                     <h1 className="title">
                         Làm việc hiệu quả hơn <br /> cùng{' '}

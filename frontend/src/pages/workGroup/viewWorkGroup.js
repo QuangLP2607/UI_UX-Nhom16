@@ -32,7 +32,7 @@ export const ViewWorkGroup = () => {
             case 'completed':
                 return (
                     <div>
-                        <Dropdown onSelect={handleSelectedSortType1}>
+                        <Dropdown onSelect={handleSelectedSortType1} className={styles.select}>
                             <Dropdown.Toggle variant="light" id="dropdown-basic">
                                 {selectedSortType1}
                             </Dropdown.Toggle>

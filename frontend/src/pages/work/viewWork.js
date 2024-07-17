@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Alert } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import globalStyles from '../../globalStyles.module.css';
 import styles from './work.module.css';
 import Header from '../../components/layout/header/header';
@@ -17,28 +19,26 @@ export const ViewWork = () => {
   const [workData, setWorkData] = useState(initialWorkData);
   const [isEditing, setIsEditing] = useState(false);
   const [percentage, setPercentage] = useState(0);
-  const [alert, setAlert] = useState(false);
 
   useEffect(() => {
     const completedTasks = workData.tasks.filter(task => task.completed);
     const percent = (completedTasks.length / workData.tasks.length) * 100;
     setPercentage(percent.toFixed(2)); 
   }, [workData.tasks]);
-  
 
   const handleDeleteTask = (index) => {
-    // setWorkData(prevData => {
-    //   const updatedTasks = [...prevData.tasks];
-    //   updatedTasks.splice(index, 1);
-    //   return { ...prevData, tasks: updatedTasks };
-    // });
+    setWorkData(prevData => {
+      const updatedTasks = [...prevData.tasks];
+      updatedTasks.splice(index, 1);
+      return { ...prevData, tasks: updatedTasks };
+    });
   };
   
   const handleAddTask = () => {
-    // setWorkData(prevWorkData => {
-    //   const newTasks = [...prevWorkData.tasks, { name: '', completed: false }];
-    //   return { ...prevWorkData, tasks: newTasks };
-    // });
+    setWorkData(prevWorkData => {
+      const newTasks = [...prevWorkData.tasks, { name: '', completed: false }];
+      return { ...prevWorkData, tasks: newTasks };
+    });
   };
   
   const handleTaskInputChange = (index, field, value) => {
@@ -51,12 +51,9 @@ export const ViewWork = () => {
 
   const saveChange = () => {
     console.log("Save:", workData);
-    localStorage.setItem('workData', JSON.stringify(workData));
+    localStorage.setItem('scheduleData', JSON.stringify(workData));
     setIsEditing(!isEditing);
-    setAlert(true);
-    setTimeout(() => {
-      setAlert(false);
-    }, 2000);
+    toast.success('Lưu thay đổi thành công!');
   };
 
   const handleTimeSelect = (field, time) => {
@@ -75,7 +72,7 @@ export const ViewWork = () => {
 
   const cancel = () => {
     setIsEditing(!isEditing);
-    console.log('Canceled');
+    toast.info('Thay đổi đã bị hủy bỏ.');
   };
 
   const toggleEditing = () => {
@@ -107,7 +104,6 @@ export const ViewWork = () => {
       });
     }
   };
-  
 
   return (
     <div>
@@ -182,7 +178,9 @@ export const ViewWork = () => {
             ))}
           {isEditing && (
               <div style={{ display: 'flex', justifyContent: 'right', padding: '10px' }}>
-              <button className={styles.addWork} onClick={handleAddTask}>
+              <button className={styles.addWork} 
+                // onClick={handleAddTask}
+              >
                 <Icon icon="material-symbols-light:add-circle-outline" style={{ fontSize: '20px', marginRight: '10px' }} />
                 Thêm mới
               </button>
@@ -225,11 +223,7 @@ export const ViewWork = () => {
               )}
             </div>
             </div>
-            {alert && (
-            <Alert variant="success" dismissible className={globalStyles.Notification}>
-              Thêm công việc thành công!
-            </Alert>
-            )}
+            <ToastContainer />
             </div>
             <Footer option="work" />
             </div>
@@ -237,4 +231,3 @@ export const ViewWork = () => {
             };
             
             export default ViewWork;
-            

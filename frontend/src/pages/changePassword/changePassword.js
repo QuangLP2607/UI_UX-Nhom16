@@ -1,5 +1,7 @@
-import { Container, Row, Col, Button, Form, Alert } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import globalStyles from '../../globalStyles.module.css';
 import styles from './changePassword.module.css';
 import Header from '../../components/layout/header/header1';
@@ -8,9 +10,7 @@ export const ChangePassword = () => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
-    const [passwordStrength, setPasswordStrength] = useState('');
-    const [alertVariant, setAlertVariant] = useState('');
-    const [alertMessage, setAlertMessage] = useState('');
+    const [passwordStrength, setPasswordStrength] = useState({ text: '', color: '' });
 
     useEffect(() => {
         if (newPassword.length !== 0) {
@@ -28,21 +28,17 @@ export const ChangePassword = () => {
 
     const handleSubmit = () => {
         if (currentPassword.trim() === '' || newPassword.trim() === '' || rePassword.trim() === '') {
-            setAlertVariant('danger');
-            setAlertMessage('Hãy điền đầy đủ thông tin.');
+            toast.error('Hãy điền đầy đủ thông tin.');
             return;
         }
         if (newPassword !== rePassword) {
-            setAlertVariant('danger');
-            setAlertMessage('Nhập lại mật khẩu không chính xác.');
+            toast.error('Nhập lại mật khẩu không chính xác.');
             return;
         }
-        setAlertVariant('success');
-        setAlertMessage('Cập nhật mật khẩu thành công !');
-        setTimeout(() => {
-            setAlertVariant('');
-            setAlertMessage('');
-        }, 2000);
+        toast.success('Cập nhật mật khẩu thành công!');
+        setCurrentPassword('');
+        setNewPassword('');
+        setRePassword('');
     };
 
     return (
@@ -85,11 +81,7 @@ export const ChangePassword = () => {
                 <Button className={styles.button} onClick={handleSubmit}>
                     Gửi phản hồi
                 </Button>
-                {alertVariant && (
-                    <Alert variant={alertVariant} onClose={() => setAlertVariant(null)} dismissible className={globalStyles.Notification}>
-                        {alertMessage}
-                    </Alert>
-                )}
+                <ToastContainer />
             </div>
         </div>
     );

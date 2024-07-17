@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Modal, Form, Alert } from 'react-bootstrap';
+import { Button, Modal, Form } from 'react-bootstrap';
 import globalStyles from '../../globalStyles.module.css';
 import styles from './workGroup.module.css';
 import Header from '../../components/layout/header/header';
 import Footer from '../../components/layout/footer/footer';
 import ListWork from '../../components/listWork/listWork';
 import { Icon } from '@iconify/react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const WorkGroup = () => {
   const [works, setWorks] = useState([
@@ -16,7 +18,6 @@ export const WorkGroup = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [newTask, setNewTask] = useState({ title: '', note: '' });
-  const [showAlert, setShowAlert] = useState(false); 
 
   const handleAddTask = () => {
     setShowModal(true);
@@ -25,12 +26,11 @@ export const WorkGroup = () => {
   const handleCloseModal = () => {
     setShowModal(false);
     setNewTask({ title: '', note: '' });
-    setShowAlert(false);
   };
 
   const handleSaveTask = () => {
     if (!newTask.title.trim()) {
-      setShowAlert(true); 
+      toast.error('Vui lòng nhập tiêu đề cho công việc.');
       return;
     }
 
@@ -39,6 +39,7 @@ export const WorkGroup = () => {
       { ...newTask, percent: 0 }
     ]);
 
+    toast.success('Thêm công việc thành công!');
     handleCloseModal();
   };
 
@@ -106,11 +107,10 @@ export const WorkGroup = () => {
         </Modal.Footer>
       </Modal>
 
-      {/* Alert for empty task title */}
-      <Alert variant="danger" show={showAlert} onClose={() => setShowAlert(false)} dismissible className={globalStyles.Notification}>
-        Vui lòng nhập tiêu đề cho công việc.
-      </Alert>
+      {/* Toast Container for notifications */}
+      <ToastContainer />
     </div>
   );
 };
 
+export default WorkGroup;

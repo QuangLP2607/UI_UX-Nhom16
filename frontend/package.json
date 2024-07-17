@@ -1,10 +1,13 @@
 {
+  "homepage": "https://QuangLP2607.github.io/UI_UX-Nhom16",
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "webpack serve --config webpack/webpack.config.js --env env=development --open",
     "build": "webpack --config webpack/webpack.config.js --env env=production"
   },
@@ -26,6 +29,7 @@
     "chart.js": "^4.4.3",
     "chartjs-plugin-datalabels": "^2.2.0",
     "dayjs": "^1.11.11",
+    "gh-pages": "^6.1.1",
     "js-cookie": "^3.0.5",
     "json-loader": "^0.5.7",
     "react-bootstrap": "^2.10.2",

@@ -38,7 +38,7 @@ export const Home = () => {
             <Header text="Trang chủ" />
             <div className={globalStyles.mainBackground}>
                 <div className={styles.edit} onClick={() => navigate('/widget')} >
-                    Chỉnh sửa <FontAwesomeIcon className={styles.iconAdd} icon={faEdit} />
+                    Chỉnh sửa <FontAwesomeIcon icon={faEdit} />
                 </div>
                 {showActivityChart && <div style={{ marginTop: '15px'}}><ActivityChart /></div>}
                 {showTodayWork && <div style={{ marginTop: '15px'}}><TodayWork /></div>}
